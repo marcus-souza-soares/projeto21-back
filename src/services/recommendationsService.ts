@@ -11,7 +11,7 @@ async function insert(createRecommendationData: CreateRecommendationData) {
   if (existingRecommendation)
     throw conflictError("Recommendations names must be unique");
 
-  await recommendationRepository.create(createRecommendationData);
+  return await recommendationRepository.create(createRecommendationData);
 }
 
 async function upvote(id: number) {
@@ -82,6 +82,9 @@ function getScoreFilter(random: number) {
   return "lte";
 }
 
+export async function deleteAll() {
+  return await recommendationRepository.deleteAll();
+}
 export const recommendationService = {
   insert,
   upvote,
@@ -90,4 +93,5 @@ export const recommendationService = {
   get,
   getById: getByIdOrFail,
   getTop,
+  deleteAll,
 };
