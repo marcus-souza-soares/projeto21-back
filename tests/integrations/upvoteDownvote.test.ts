@@ -19,11 +19,15 @@ describe("Testes relacionados ao upvote e downvote", () => {
     {
       const recommendation = create();
       await recommendationService.insert(recommendation);
-      const foundBefore: Recommendation = await prisma.recommendation.findFirst({
-        where: recommendation,
-      });
+      const foundBefore: Recommendation = await prisma.recommendation.findFirst(
+        {
+          where: recommendation,
+        }
+      );
       const { score, id } = foundBefore;
-      const result = await tester.post(`/recommendations/${id}/upvote`).send({});
+      const result = await tester
+        .post(`/recommendations/${id}/upvote`)
+        .send({});
       expect(result.status).toBe(200);
       const foundAfter: Recommendation = await prisma.recommendation.findFirst({
         where: recommendation,
@@ -37,11 +41,15 @@ describe("Testes relacionados ao upvote e downvote", () => {
     {
       const recommendation = create();
       await recommendationService.insert(recommendation);
-      const foundBefore: Recommendation = await prisma.recommendation.findFirst({
-        where: recommendation,
-      });
+      const foundBefore: Recommendation = await prisma.recommendation.findFirst(
+        {
+          where: recommendation,
+        }
+      );
       const { score, id } = foundBefore;
-      const result = await tester.post(`/recommendations/${id}/downvote`).send({});
+      const result = await tester
+        .post(`/recommendations/${id}/downvote`)
+        .send({});
       expect(result.status).toBe(200);
       const foundAfter: Recommendation = await prisma.recommendation.findFirst({
         where: recommendation,
@@ -54,18 +62,18 @@ describe("Testes relacionados ao upvote e downvote", () => {
     {
       const recommendation = create();
       await recommendationService.insert(recommendation);
-      const foundBefore: Recommendation = await prisma.recommendation.findFirst({
-        where: recommendation,
-      });
-      const {id } = foundBefore;
-      for(let i = 0; i > -6; i--){
+      const foundBefore: Recommendation = await prisma.recommendation.findFirst(
+        {
+          where: recommendation,
+        }
+      );
+      const { id } = foundBefore;
+      for (let i = 0; i > -6; i--) {
         await tester.post(`/recommendations/${id}/downvote`).send({});
       }
-
       const foundAfter: Recommendation = await prisma.recommendation.findFirst({
         where: recommendation,
       });
-
       expect(foundAfter).toBe(null);
     }
   });

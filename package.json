@@ -10,7 +10,7 @@
     "test": "npx dotenv -e .env.test prisma migrate dev && npx dotenv -e .env.test jest -i",
     "dev": "npx dotenv -e .env.test nodemon src/server.ts",
     "test:unit": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/unit",
-    "test:integration": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/integrations"
+    "test:integration": "dotenv -e .env.test jest -- -i --testPathPattern=tests/integrations --coverage"
   },
   "keywords": [],
   "author": "",
