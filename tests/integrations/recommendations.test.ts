@@ -26,9 +26,3 @@ describe("Testes de criação de /recommendations", () => {
     expect(result.status).toBe(422);
   });
 });
-
-describe("", () => {
-  it("", async () => {
-
-  });
-});
