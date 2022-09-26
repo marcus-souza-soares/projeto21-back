@@ -1,4 +1,4 @@
-import { recommendationService } from "../../src/services/recommendationsService.js";
+import { recommendationService } from "../../src/services/recommendationsService";
 import { create } from "../factory/recommendationFactory.js";
 import { Recommendation } from "@prisma/client";
 import supertest from "supertest";
